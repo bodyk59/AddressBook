@@ -18,7 +18,6 @@ public class CreateRecordServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("isCreated", false);
         request.getRequestDispatcher("/WEB-INF/create-record.jsp").forward(request, response);
     }
 
