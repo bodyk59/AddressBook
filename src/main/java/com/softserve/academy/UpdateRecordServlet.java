@@ -32,7 +32,8 @@ public class UpdateRecordServlet extends HttpServlet {
         if (addressBook.update(record[0], record[1], request.getParameter("address"))) {
             response.sendRedirect("/records/list");
         } else {
-            request.setAttribute("person", new String[]{record[0], record[1]});
+            request.setAttribute("error", String.format("Person with name '%s %s' not found in Address Book!", record[0], record[1]));
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             request.getRequestDispatcher("/WEB-INF/error-page.jsp").forward(request, response);
         }
     }
