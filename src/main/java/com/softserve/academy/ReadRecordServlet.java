@@ -20,13 +20,14 @@ public class ReadRecordServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String address = addressBook.read(firstName, lastName);
+
         if (address != null) {
             request.setAttribute("record", new String[]{firstName, lastName, address});
             request.getRequestDispatcher("/WEB-INF/read-record.jsp").forward(request, response);
         } else {
-            request.setAttribute("person", new String[]{firstName, lastName});
+            request.setAttribute("error", String.format("Person with name '%s %s' not found in Address Book!", firstName, lastName));
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             request.getRequestDispatcher("/WEB-INF/error-page.jsp").forward(request, response);
         }
-
     }
 }
