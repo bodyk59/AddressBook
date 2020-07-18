@@ -27,5 +27,4 @@ public class ListRecordsServlet extends HttpServlet {
         request.setAttribute("records", addressBook);
         requestDispatcher.forward(request, response);
     }
-
 }
